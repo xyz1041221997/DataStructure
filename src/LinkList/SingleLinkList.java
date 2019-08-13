@@ -42,6 +42,48 @@ public class SingleLinkList {
         }
     }
 
+
+    /**
+     * 修改节点
+     * @param newNode
+     */
+    public void updateNode(HashNode newNode){
+        HashNode temp = head;
+        boolean flag = false;   //是否找到了节点
+        while(true){
+            if(temp.next == null){
+                System.out.println("链表为空");
+                return;
+            }
+            if(temp.no == newNode.no){
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (flag){
+            temp.name = newNode.name;
+            temp.nikeName = newNode.nikeName;
+        }
+    }
+    public void deleteNode(int no){
+        HashNode temp = head;
+        boolean flag = false;
+        while (true){
+            if (temp.next == null){
+                System.out.println("链表为空");
+                return;
+            }
+            if(temp.next.no == no){
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (flag){
+            temp.next = temp.next.next;
+        }
+    }
     public void showNode(){
         HashNode temp = head.next;
         if(temp == null){
@@ -68,7 +110,11 @@ public class SingleLinkList {
          linkList.addByNo(node2);
          linkList.addByNo(node3);
          linkList.addByNo(node1);
-
+        HashNode newNode = new HashNode(2, "托儿所", "快乐风男");
+        linkList.updateNode(newNode);
+        linkList.deleteNode(2);
+        linkList.deleteNode(3);
+        linkList.deleteNode(1);
         linkList.showNode();
     }
 }
