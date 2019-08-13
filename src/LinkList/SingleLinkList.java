@@ -15,6 +15,33 @@ public class SingleLinkList {
         temp.next = node;
     }
 
+    /**
+     * 通过序号增加序列
+     * @param node
+     */
+    public void addByNo(HashNode node){
+        HashNode temp = head;
+        boolean flag = false;
+        while(true){
+            if (temp.next == null){
+                break;
+            }
+            if(temp.next.no > node.no){
+               break;
+            }else if (temp.next.no == node.no){
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (flag){
+            System.out.println("添加编号存在"+node.no);
+        }else{
+            node.next = temp.next;
+            temp.next = node;
+        }
+    }
+
     public void showNode(){
         HashNode temp = head.next;
         if(temp == null){
@@ -35,9 +62,13 @@ public class SingleLinkList {
         HashNode node2 = new HashNode(2, "亚索", "疾风剑豪");
         HashNode node3 = new HashNode(3, "瑞兹", "流浪法师");
         SingleLinkList linkList = new SingleLinkList();
-        linkList.addNode(node1);
-        linkList.addNode(node2);
-        linkList.addNode(node3);
+//        linkList.addNode(node1);
+//        linkList.addNode(node2);
+//        linkList.addNode(node3);
+         linkList.addByNo(node2);
+         linkList.addByNo(node3);
+         linkList.addByNo(node1);
+
         linkList.showNode();
     }
 }
